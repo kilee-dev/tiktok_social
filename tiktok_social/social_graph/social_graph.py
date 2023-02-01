@@ -78,6 +78,8 @@ class SocialGraph:
         self.follower_relationship[follower_id][followee_id] = 0 
         self.followee_relationship[followee_id][follower_id] = 0
 
-    def set_weight(self, follower_id: UserIdT, followee_id: UserIdT, weight: int) -> None:
-        self.follower_relationship[follower_id][followee_id] = weight 
-        self.followee_relationship[followee_id][follower_id] = weight
+    def increment_weight(self, follower_id: UserIdT, followee_id: UserIdT, weight: int) -> None:
+        self.follower_relationship[follower_id][followee_id] += weight 
+        self.followee_relationship[followee_id][follower_id] += weight
+
+        

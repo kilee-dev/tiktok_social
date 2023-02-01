@@ -29,6 +29,29 @@ class TestDB(unittest.TestCase):
         self.assertEqual(db.get_repost_by_id(1).original_post_id, 1, "Should be 1")
         self.assertEqual(db.get_repost_by_id(1).repost_user_id, 1, "Should be 1")
 
+    def test_user_like_post(self):
+        db = DB()
+        db.create_post(Post(1, 1))
+        db.user_like_post(1, 1)
+        self.assertEqual(db.post_likes[(1, 1)] != None, True, "Should be True")
+
+    def test_user_comment_on_post(self):
+        db = DB()
+        db.create_post(Post(1, 1))
+        db.user_comment_on_post(1, 1, "So cool!")
+        self.assertEqual(db.post_comments[(1, 1)].content, "So cool!", "Should be So cool!")
+
+    def test_user_share_post(self):
+        db = DB()
+        db.create_post(Post(1, 1))
+        db.user_share_post(1, 1)
+        self.assertEqual(db.post_shares[(1, 1)] != None, True, "Should be True")
+
+    def test_user_save_post(self):
+        db = DB()
+        db.create_post(Post(1, 1))
+        db.user_save_post(1, 1)
+        self.assertEqual(db.post_saves[(1, 1)] != None, True, "Should be True")
 
 if __name__ == "__main__":
     unittest.main()

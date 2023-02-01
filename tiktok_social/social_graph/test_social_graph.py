@@ -116,9 +116,10 @@ class TestSocialGraph(unittest.TestCase):
         self.assertEqual(len(test_social_graph.followee_relationship[3]), 1, "Should be 1")
         self.assertEqual(len(test_social_graph.followee_relationship[4]), 1, "Should be 1")
 
-    def test_set_weight(self):
+    def test_increment_weight(self):
         test_social_graph = SocialGraph()       
-        test_social_graph.set_weight(1, 2, 5)
+        test_social_graph.follow_user(1, 2)
+        test_social_graph.increment_weight(1, 2, 5)
         self.assertEqual(test_social_graph.follower_relationship[1][2], 5, "Should be 5")
         self.assertEqual(test_social_graph.followee_relationship[2][1], 5, "Should be 5")
 
